@@ -19,11 +19,17 @@ morgenBroedControllers.controller('LoginCtrl', function($scope,
                 $scope.login = function() {
                 if($scope.brugerModel =='admin')
                 {
+                    if($scope.passwordModel.length>0)
+                    {
         		$location.path('/admin');
+                    }
                 }
-                else
+                if($scope.brugerModel =='jhl' || $scope.brugerModel =='jmn' || $scope.brugerModel =='hve')
                 {
+                    if($scope.passwordModel.length>0)
+                    {
         		$location.path('/ordre');
+                    }
                 }
 	}
 
