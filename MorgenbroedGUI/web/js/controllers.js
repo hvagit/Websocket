@@ -9,9 +9,12 @@ morgenBroedControllers.controller('OrdreCtrl', function($scope,
 
 morgenBroedControllers.controller('AdminCtrl', function($scope, $routeParams,
 		$location, $http) {
-                    
+
+     $scope.batchJobStatus = 'Batch-job er ikke afviklet';
+    
      $scope.submitBatch = function() 
       {
+        $scope.batchJobStatus = 'Batch-job er under afvikling';
         var promise = $http({
         method: 'POST',
         url: 'http://localhost:8080/MorgenbroedBatch/JobSubmitterServlet',
@@ -21,13 +24,13 @@ morgenBroedControllers.controller('AdminCtrl', function($scope, $routeParams,
                 
          promise.success(function (data) 
         {
-            alert("Succes");
-            $scope.status=data;
+               $scope.batchJobStatus = 'Batch-job er afviklet uden fejl';
+               $scope.status=data;
         });
 
          promise.error(function (data) 
         {
-            alert("Fejl");
+            $scope.batchJobStatus = 'Batch-job fejlede';
             $scope.status=data;
         });
      };
