@@ -12,7 +12,12 @@ morgenBroedControllers.controller('AdminCtrl', function($scope, $routeParams,
 
      $scope.batchJobStatus = 'Batch-job er ikke afviklet';
     
-     $scope.submitBatch = function() 
+     $scope.visData = function() 
+     {
+         
+     };
+    
+    $scope.submitBatch = function() 
       {
         $scope.batchJobStatus = 'Batch-job er under afvikling';
         var promise = $http({
