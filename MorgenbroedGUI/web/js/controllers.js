@@ -7,16 +7,32 @@ morgenBroedControllers.controller('OrdreCtrl', function($scope,
 
 });
 
-morgenBroedControllers.controller('AdminCtrl', function($scope, $routeParams,
-		$location, $http) {
+morgenBroedControllers.controller('AdminCtrl', function($scope, $http) {
 
      $scope.batchJobStatus = 'Batch-job er ikke afviklet';
     
-     $scope.visData = function() 
-     {
-         
-     };
+     $scope.ordreData = [];
     
+    function doOpen(evt) {
+        var files = evt.target.files,
+        reader = new FileReader();
+        reader.onload = function() {
+            var personData = this.result.split('\n');
+            for(var i=0; i< personData.length; i++)
+            {
+                var detailData = personData[i].split(',');
+                var data = {"brugerId": detailData[0], "bestilt":detailData[1], "betalt": detailData[2]};
+                
+                $scope.ordreData.splice(0, 0, data);
+            }
+            $scope.$digest();
+        };
+        reader.readAsText(files[0]);
+    }
+       
+    var openbtn = document.getElementById("openselect");
+    openselect.addEventListener("change", doOpen, false);
+
     $scope.submitBatch = function() 
       {
         $scope.batchJobStatus = 'Batch-job er under afvikling';
