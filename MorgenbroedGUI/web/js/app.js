@@ -11,9 +11,9 @@ morgenBroedApp.config(['$routeProvider',
         templateUrl: 'templates/login.html',
         controller: 'LoginCtrl'
       }).
-      when('/ordre', {
-        templateUrl: 'templates/ordre.html',
-        controller: 'OrdreCtrl'
+      when('/brugerStatus', {
+        templateUrl: 'templates/brugerStatus.html',
+        controller: 'BrugerStatusCtrl'
       }).
       when('/admin', {
           templateUrl: 'templates/admin.html',
