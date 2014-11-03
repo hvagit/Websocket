@@ -2,7 +2,7 @@
 
 var morgenBroedControllers = angular.module('morgenBroedControllers', []);
 
-morgenBroedControllers.controller('OrdreCtrl', function($scope,
+morgenBroedControllers.controller('BrugerStatusCtrl', function($scope,
 		$routeParams, $location, $http, dataService, opdateringsData) {
 
 });
@@ -75,7 +75,7 @@ morgenBroedControllers.controller('LoginCtrl', function($scope,
                     {
                         if($scope.passwordModel !== null && $scope.passwordModel.length>0)
                         {
-                            $location.path('/ordre');
+                            $location.path('/brugerStatus');
                         }
                     }
                 };
