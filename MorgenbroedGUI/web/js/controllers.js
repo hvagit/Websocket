@@ -5,6 +5,7 @@ var morgenBroedControllers = angular.module('morgenBroedControllers', []);
 morgenBroedControllers.controller('BrugerStatusCtrl', function($scope,
 		$routeParams, $location, $http, dataService, opdateringsData) {
 
+alert('abc');
 });
 
 morgenBroedControllers.controller('AdminCtrl', function($scope, $http) {
