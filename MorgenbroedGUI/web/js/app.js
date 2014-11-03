@@ -3,6 +3,7 @@
 var morgenBroedApp = angular.module('morgenBroedApp', [
   'ngRoute','ngAnimate', 'ngTouch', 'ngResource', 'morgenBroedControllers', 'morgenBroedDirectives', 'morgenBroedFactories', 'morgenBroedServices', 'morgenBroedFilters']);
 
+
 morgenBroedApp.config(['$routeProvider', 
   function($routeProvider) {
     $routeProvider.
