@@ -1,0 +1,17 @@
+[
+ { 
+    "brugerId": "hve",
+    "navn": "Henrik Andreassen",
+    "photo": "img/image2.jpg"
+  },
+  { 
+    "brugerId": "jmn",
+    "navn": "Jens Gam Nielsen",
+    "photo": "img/image1.jpg"
+  },
+  { 
+    "brugerId": "jhl",
+    "navn": "Johnny Nielsen",
+    "photo": "img/image3.jpg"
+  }
+]
