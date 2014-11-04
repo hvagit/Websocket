@@ -20,9 +20,6 @@ morgenBroedControllers.controller('BrugerStatusCtrl', function($scope,
                                         $scope.userId = data[i].brugerId;
                                         $scope.userName = data[i].navn;
                                         $scope.photoPath = data[i].photo;
-                                        alert("h"+data[i].brugerId);
-                                        alert("h"+data[i].navn);
-                                        alert("h"+data[i].photo);
                                     }
 				}
 	  	}).error(function(data, status, headers, config) {
