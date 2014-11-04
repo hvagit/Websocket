@@ -3,9 +3,34 @@
 var morgenBroedControllers = angular.module('morgenBroedControllers', []);
 
 morgenBroedControllers.controller('BrugerStatusCtrl', function($scope,
-		$routeParams, $location, $http, dataService, opdateringsData) {
+		$http, aktuelleData) {
 
-alert('abc');
+        $scope.userId = '';
+        $scope.userName = '';
+        $scope.photoPath = '';
+        
+        $scope.setBrugerInfo = function() {
+                var promise = $http.get('data/brugere.json'); 
+
+                  promise.success(function(data, status, headers, config) {
+ 				for(var i=0; i<data.length; i++)
+				{
+                                    if(aktuelleData.brugerId === data[i].brugerId)
+                                    {
+                                        $scope.userId = data[i].brugerId;
+                                        $scope.userName = data[i].navn;
+                                        $scope.photoPath = data[i].photo;
+                                        alert("h"+data[i].brugerId);
+                                        alert("h"+data[i].navn);
+                                        alert("h"+data[i].photo);
+                                    }
+				}
+	  	}).error(function(data, status, headers, config) {
+	    		alert("Fejl "+status);
+	  	});
+	};
+
+	$scope.setBrugerInfo();
 });
 
 morgenBroedControllers.controller('AdminCtrl', function($scope, $http) {
@@ -61,8 +86,12 @@ morgenBroedControllers.controller('AdminCtrl', function($scope, $http) {
 });
 
 morgenBroedControllers.controller('LoginCtrl', function($scope,
-		$routeParams, $location) {
+		$location, aktuelleData) {
                     
+               	$scope.setAktuelleData = function() {
+        		aktuelleData.brugerId = $scope.brugerModel;
+        	};
+    
                     
                 $scope.login = function() {
                     if($scope.brugerModel ==='admin')
@@ -74,6 +103,7 @@ morgenBroedControllers.controller('LoginCtrl', function($scope,
                     }
                     if($scope.brugerModel ==='jhl' || $scope.brugerModel ==='jmn' || $scope.brugerModel ==='hve')
                     {
+                        $scope.setAktuelleData();
                         if($scope.passwordModel !== null && $scope.passwordModel.length>0)
                         {
                             $location.path('/brugerStatus');
