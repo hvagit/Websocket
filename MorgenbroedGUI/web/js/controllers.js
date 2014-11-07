@@ -8,6 +8,7 @@ morgenBroedControllers.controller('BrugerStatusCtrl', function($scope,
         $scope.userId = '';
         $scope.userName = '';
         $scope.photoPath = '';
+        $scope.saldo = '';
         
         $scope.setBrugerInfo = function() {
                 var promise = $http.get('data/brugere.json'); 
@@ -27,7 +28,32 @@ morgenBroedControllers.controller('BrugerStatusCtrl', function($scope,
 	  	});
 	};
 
-	$scope.setBrugerInfo();
+    $scope.hentSaldo = function() 
+      {
+        var promise = $http({
+        method: 'POST',
+        url: 'http://localhost:8080/MorgenbroedBatch/UtilServlet?userId='+$scope.userId,
+        headers: {'Content-Type': 'application/json'},
+        data:  $scope.input
+        });
+                
+         promise.success(function (data) 
+        {
+             $scope.saldo = data;
+         });
+
+         promise.error(function (data) 
+        {
+             $scope.saldo = data;
+            alert('Hent af saldo fejlede');
+         });
+     };
+	
+    
+    
+    
+    $scope.setBrugerInfo();
+        
 });
 
 morgenBroedControllers.controller('AdminCtrl', function($scope, $http) {
