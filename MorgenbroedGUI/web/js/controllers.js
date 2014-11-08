@@ -61,6 +61,7 @@ morgenBroedControllers.controller('AdminCtrl', function($scope, $http) {
      $scope.batchJobStatus = 'Batch-job er ikke afviklet';
     
      $scope.ordreData = [];
+     $scope.fileName = '';
     
     function doOpen(evt) {
         var files = evt.target.files,
@@ -77,6 +78,7 @@ morgenBroedControllers.controller('AdminCtrl', function($scope, $http) {
             $scope.$digest();
         };
         reader.readAsText(files[0]);
+        $scope.fileName = files[0].name;
     }
        
     var openbtn = document.getElementById("openselect");
@@ -87,7 +89,7 @@ morgenBroedControllers.controller('AdminCtrl', function($scope, $http) {
         $scope.batchJobStatus = 'Batch-job er under afvikling';
         var promise = $http({
         method: 'POST',
-        url: 'http://localhost:8080/MorgenbroedBatch/JobSubmitterServlet',
+        url: 'http://localhost:8080/MorgenbroedBatch/JobSubmitterServlet?fileName='+$scope.fileName,
         headers: {'Content-Type': 'application/json'},
         data:  $scope.input
         });
