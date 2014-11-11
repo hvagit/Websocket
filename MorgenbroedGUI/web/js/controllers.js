@@ -62,6 +62,7 @@ morgenBroedControllers.controller('AdminCtrl', function($scope, $http) {
     
      $scope.ordreData = [];
      $scope.fileName = '';
+     $scope.executionId = '';
     
     function doOpen(evt) {
         var files = evt.target.files,
@@ -97,6 +98,7 @@ morgenBroedControllers.controller('AdminCtrl', function($scope, $http) {
          promise.success(function (data) 
         {
                $scope.batchJobStatus = 'Batch-job er afviklet uden fejl';
+               $scope.executionId = data;
                $scope.status=data;
         });
 
